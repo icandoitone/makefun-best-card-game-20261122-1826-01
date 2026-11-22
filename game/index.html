@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Duel — a battle of suits</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div id="table" aria-label="Ember Duel card table">
+  <header id="topbar">
+    <div class="brand">EMBER DUEL</div>
+    <div id="roundBadge" class="round-badge">ROUND 1</div>
+    <div id="turnBadge" class="turn-badge">Your turn</div>
+  </header>
+
+  <section id="rivalZone" class="side rival-side" aria-label="Rival area">
+    <div class="fighter">
+      <div class="portrait rival-portrait" aria-hidden="true">M</div>
+      <div class="fighter-info">
+        <div class="fighter-name">MARA · RIVAL</div>
+        <div class="life-row">
+          <span class="life-label">LIFE</span>
+          <div class="life-bar"><div id="rivalLifeFill" class="life-fill rival-fill"></div></div>
+          <span id="rivalLifeText" class="life-text">30 / 30</span>
+        </div>
+        <div class="guard-row"><span class="guard-label">GUARD</span><span id="rivalGuardText" class="guard-text">0</span></div>
+      </div>
+    </div>
+    <div id="rivalHand" class="hand rival-hand" aria-label="Rival hand, face down"></div>
+  </section>
+
+  <section id="middleRow" class="middle-row">
+    <div id="rivalPlayed" class="played-row" aria-label="Cards Mara played"></div>
+    <div id="arena" class="arena">
+      <div id="arenaMessage" class="arena-message">Draw a card, then play one.</div>
+      <div id="harmonyNote" class="harmony-note" hidden>HARMONY — same suit costs 1 less ember</div>
+    </div>
+    <div id="playerPlayed" class="played-row" aria-label="Cards you played"></div>
+  </section>
+
+  <section id="playerZone" class="side player-side" aria-label="Player area">
+    <div id="battleLog" class="battle-log" aria-live="polite"></div>
+    <div id="playerHand" class="hand player-hand" aria-label="Your hand"></div>
+    <div class="player-panel">
+      <div class="fighter">
+        <div class="portrait player-portrait" aria-hidden="true">Y</div>
+        <div class="fighter-info">
+          <div class="fighter-name">YOU</div>
+          <div class="life-row">
+            <span class="life-label">LIFE</span>
+            <div class="life-bar"><div id="playerLifeFill" class="life-fill player-fill"></div></div>
+            <span id="playerLifeText" class="life-text">30 / 30</span>
+          </div>
+          <div class="guard-row"><span class="guard-label">GUARD</span><span id="playerGuardText" class="guard-text">0</span></div>
+        </div>
+      </div>
+      <div class="ember-box">
+        <div class="ember-label">EMBER</div>
+        <div id="emberPips" class="ember-pips" aria-label="Ember"></div>
+        <div id="emberText" class="ember-text">3 / 3</div>
+      </div>
+      <button id="endTurnButton" class="end-turn" type="button">END TURN ⏎</button>
+    </div>
+  </section>
+
+  <div id="titleScreen" class="overlay title-overlay">
+    <div class="title-card">
+      <div class="title-suits" aria-hidden="true"><span class="suit-flame">▲</span><span class="suit-wave">●</span><span class="suit-leaf">◆</span><span class="suit-stone">■</span></div>
+      <h1>EMBER DUEL</h1>
+      <p class="tagline">A battle of suits. Outplay Mara, card by card.</p>
+      <div class="rules-box">
+        <p>Both duelists start at <strong>30 life</strong>. Each turn you draw a card and your ember refills.</p>
+        <p>Play cards to <strong>strike</strong>, raise <strong>guard</strong>, or <strong>mend</strong> wounds. Guard soaks damage first.</p>
+        <p><strong>Harmony:</strong> a card matching the suit of the card you just played costs 1 less ember.</p>
+        <p>Reduce Mara to 0 life to win. Fall to 0 and the duel is lost.</p>
+      </div>
+      <button id="startButton" class="start-button" type="button">START DUEL</button>
+      <p class="keys-hint">Click a card to play it · keys 1–7 play a card · Enter ends your turn · N starts a new duel</p>
+    </div>
+  </div>
+
+  <div id="endScreen" class="overlay end-overlay" hidden>
+    <div class="end-card">
+      <h2 id="endTitle">VICTORY</h2>
+      <p id="endText" class="end-text"></p>
+      <p id="endStats" class="end-stats"></p>
+      <button id="againButton" class="start-button" type="button">PLAY AGAIN</button>
+      <p class="keys-hint">Press N for a new duel</p>
+    </div>
+  </div>
+</div>
+<p id="status" role="status" aria-live="polite" class="sr-only"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
